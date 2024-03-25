@@ -1,5 +1,14 @@
+@font-face {
+    font-family: 'knockout';
+    src: url('./fonts/knockout.otf') format('opentype');
+
+}
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'knockout', Helvetica, Arial, sans-serif;
+    font-size : 1.5rem;
+    color: white;
+    background-color: #005467;
 }
 
 a, .btn-link {
