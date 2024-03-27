@@ -1,0 +1,16 @@
+﻿.container {
+    border: 2px dashed #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.placeholder {
+    border: 1px solid #aaa;
+    height: 50px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+}

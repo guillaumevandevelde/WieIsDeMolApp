@@ -12,19 +12,24 @@
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Overzicht
-            </NavLink>
-            <NavLink class="nav-link" href="/voting">
-                <span class="bi bi-card-checklist" aria-hidden="true"></span> Stemmen
-            </NavLink>
-            <NavLink class="nav-link" href="/candidates">
-                <span class="bi bi-people" aria-hidden="true"></span> Kandidaten
-            </NavLink>
-        </div>
         <AuthorizeView>
             <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/">
+                        <span class="bi bi-house-door-fill" aria-hidden="true"></span> Overzicht
+                    </NavLink>
+                    <NavLink class="nav-link" href="/vote">
+                        <span class="bi bi-card-checklist" aria-hidden="true"></span> Stemmen
+                    </NavLink>
+                    <NavLink class="nav-link" href="/candidates">
+                        <span class="bi bi-people" aria-hidden="true"></span> Kandidaten
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/admin">
+                        <span class="bi bi-person-badge" aria-hidden="true"></span> admin
+                    </NavLink>
+                </div>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Manage">
                         <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
@@ -43,7 +48,7 @@
             <NotAuthorized>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Login">
-                        <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
+                        <span class="bi bi-person-badge" aria-hidden="true"></span> Login
                     </NavLink>
                 </div>
             </NotAuthorized>

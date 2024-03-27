@@ -4,6 +4,8 @@
 
 }
 
+
+
 html, body {
     font-family: 'knockout', Helvetica, Arial, sans-serif;
     font-size : 1.5rem;
@@ -12,18 +14,28 @@ html, body {
 }
 
 a, .btn-link {
-    color: #006bb7;
+    color: #249F9D;
+}
+
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 
+  0 0 0 0.25rem #249F9D;
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #249F9D;
+    border-color: #249F9D;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    color: #fff;
+    background-color: #1f8f8d;
+    border-color: #1f8f8d;
 }
+
 
 .content {
     padding-top: 1.1rem;

@@ -1,0 +1,13 @@
+﻿@page "/createvotinground"
+<h3>CreateVotingRound</h3>
+
+<EditForm Model="@newVotingRound" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <InputNumber @bind-Value="newVotingRound.Round"/>
+    <InputDate @bind-Value="newVotingRound.StartTime" />
+    <InputDate @bind-Value="newVotingRound.EndTime" />
+    <InputCheckbox @bind-Value="newVotingRound.IsActive" />
+
+    <button type="submit">Publiceer Ronde</button>
+</EditForm>

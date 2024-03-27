@@ -1,0 +1,42 @@
+@page "/candidates"
+
+<button class="btn btn-primary" type="button" @onclick="CreateCandidate">Nieuwe kandidaat aanmaken</button>
+
+@if (candidates == null)
+{
+<p><em>Loading...</em></p>
+}
+else if (candidates.Count == 0)
+{
+<p>Geen kandidaten gevonden.</p>
+}
+else
+{
+<table class="table">
+    <thead>
+    <tr>
+        <th>Foto URL</th>
+        <th>Naam</th>
+        <th>Mol?</th>
+        <th>Winnaar?</th>
+        <th>Actief?</th>
+        <th>Acties</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var candidate in candidates)
+    {
+    <tr>
+        <td><img src="@candidate.PhotoUrl" alt="Foto van @candidate.Name" style="height: 50px; width: auto;"/></td>
+        <td>@candidate.Name</td>
+        <td>@(candidate.IsMol ? "Ja" : "Nee")</td>
+        <td>@(candidate.IsWinner ? "Ja" : "Nee")</td>
+        <td>@(candidate.IsActive ? "Ja" : "Nee")</td>
+        <td>
+            <button class="btn btn-primary" @onclick="() => EditCandidate(candidate.Id)">Bewerken</button>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+}
