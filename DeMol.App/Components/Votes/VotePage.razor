@@ -1,0 +1,25 @@
+﻿@page "/vote"
+
+@inject IJSRuntime JSRuntime
+<h3>VotingRound</h3>
+<div class="container" id="mollen">
+    <p>Drop hier je mollen</p>
+    <div class="placeholder" data-position="1">Plaats 1</div>
+    <div class="placeholder" data-position="2">Plaats 2</div>
+    <div class="placeholder" data-position="3">Plaats 3</div>
+</div>
+
+<div class="container" id="winnaars">
+    <p>Drop hier je winnaars</p>
+    <div class="placeholder" data-position="1">Plaats 1</div>
+    <div class="placeholder" data-position="2">Plaats 2</div>
+    <div class="placeholder" data-position="3">Plaats 3</div>
+</div>
+
+
+@foreach (var candidate in candidates)
+{
+    <img src="@candidate.PhotoUrl" draggable="true" class="draggable" id="@($"candidate-{candidate.Id}")" />
+}
+
+
