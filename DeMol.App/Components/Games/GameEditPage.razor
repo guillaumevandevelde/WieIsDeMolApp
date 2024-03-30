@@ -1,4 +1,5 @@
 ﻿@page "/game/edit"
+@attribute [Authorize(Policy = "IsAdmin")]
 @using DeMol.App.Services
 
 <EditForm Model="@game" OnValidSubmit="HandleValidSubmit">

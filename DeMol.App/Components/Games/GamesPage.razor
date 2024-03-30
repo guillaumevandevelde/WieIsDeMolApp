@@ -1,4 +1,5 @@
 ﻿@page "/games"
+@attribute [Authorize(Policy = "IsAdmin")]
 @using DeMol.App.Services
 
 <h3>Beheer Games</h3>

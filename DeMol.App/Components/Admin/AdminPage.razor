@@ -1,6 +1,6 @@
 ﻿@page "/admin"
 @using Microsoft.AspNetCore.Authorization
-@attribute [Authorize(Roles = "Admin")]
+@attribute [Authorize(Policy = "IsAdmin")]
 <h3>Admin</h3>
 
 <div class="top-menu">
