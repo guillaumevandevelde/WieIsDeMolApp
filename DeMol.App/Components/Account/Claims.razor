@@ -1,0 +1,13 @@
+﻿@page "/claims"
+
+<h4>Gebruikersclaims</h4>
+<hr />
+<div>
+    <dl class="row">
+        @foreach (var claim in claims)
+        {
+            <dt class="col-sm-3">@claim.Type</dt>
+            <dd class="col-sm-9">@claim.Value</dd>
+        }
+    </dl>
+</div>
