@@ -1,13 +1,13 @@
 ﻿@page "/createvotinground"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
 <h3>CreateVotingRound</h3>
 
 <EditForm Model="@newVotingRound" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputNumber @bind-Value="newVotingRound.Round"/>
-    <InputDate @bind-Value="newVotingRound.StartTime" />
-    <InputDate @bind-Value="newVotingRound.EndTime" />
-    <InputCheckbox @bind-Value="newVotingRound.IsActive" />
-
-    <button type="submit">Publiceer Ronde</button>
+    <InputDate Type="InputDateType.DateTimeLocal" @bind-Value="newVotingRound.StartTime" />
+    <InputDate Type="InputDateType.DateTimeLocal" @bind-Value="newVotingRound.EndTime" />
+    <button class="btn btn-primary" type="submit">Publiceer Ronde</button>
 </EditForm>

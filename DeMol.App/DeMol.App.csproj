@@ -13,6 +13,8 @@
 
     <ItemGroup>
         <PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.4.1" />
+        <PackageReference Include="blazor-dragdrop" Version="2.6.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.3"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.3">
           <PrivateAssets>all</PrivateAssets>
@@ -23,10 +25,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DeMol.Domain\DeMol.Domain.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Migrations\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -68,6 +66,7 @@
       <_ContentIncludedByDefault Remove="Components\Account\Shared\RedirectToLogin.razor" />
       <_ContentIncludedByDefault Remove="Components\Account\Shared\ShowRecoveryCodes.razor" />
       <_ContentIncludedByDefault Remove="Components\Account\Shared\StatusMessage.razor" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\dragAndDrop.js" />
     </ItemGroup>
 
 </Project>

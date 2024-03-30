@@ -1,25 +1,43 @@
 ﻿@page "/vote"
 
-@inject IJSRuntime JSRuntime
-<h3>VotingRound</h3>
-<div class="container" id="mollen">
-    <p>Drop hier je mollen</p>
-    <div class="placeholder" data-position="1">Plaats 1</div>
-    <div class="placeholder" data-position="2">Plaats 2</div>
-    <div class="placeholder" data-position="3">Plaats 3</div>
-</div>
 
-<div class="container" id="winnaars">
-    <p>Drop hier je winnaars</p>
-    <div class="placeholder" data-position="1">Plaats 1</div>
-    <div class="placeholder" data-position="2">Plaats 2</div>
-    <div class="placeholder" data-position="3">Plaats 3</div>
-</div>
-
-
-@foreach (var candidate in candidates)
+@if (_currentVotingRound == null)
 {
-    <img src="@candidate.PhotoUrl" draggable="true" class="draggable" id="@($"candidate-{candidate.Id}")" />
+    <h1>Geen stemronde gevonden</h1>
 }
+else if (_currentVotingRound.StartTime > DateTime.Now)
+{
+    <h1>Stemronde @_currentVotingRound.Round</h1>
+    <p>Deze ronde start op @_currentVotingRound.StartTime</p>
+}
+else
+{
+    <h1>Stem Ronde @_currentVotingRound.Round</h1>
+    @if (_currentVotingRound.EndTime < DateTime.Now)
+    {
+        <p>Deze ronde is gesloten</p>
+    }
+    else
+    {
+        <p>Deze ronde sluit op @_currentVotingRound.EndTime</p>
 
+        @if(!VotedForWinners)
+        {
+            <VotingComponent Candidates="_candidates" Candidates2="_winners" title="winnaars"></VotingComponent>
+            <button class="btn btn-primary" type="button" @onclick="VoteWinners">Stem</button>
+        }
+        else
+        {
+            @if (!VotedForMoles)
+            {
 
+                <VotingComponent Candidates="_candidates" Candidates2="_moles" title="Mollen"></VotingComponent>
+                <button class="btn btn-primary" @onclick="VoteMoles">Stem</button>
+            }
+            else
+            {
+                <p>Je bracht reeds een stem uit op de winnaars & mollen deze week</p>
+            }
+        }
+    }
+}

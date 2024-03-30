@@ -1,0 +1,13 @@
+﻿.candidate-picture {
+    width: 100px; /* Stel een vaste breedte in voor afbeeldingen, pas dit aan naar jouw voorkeur */
+    height: auto; /* Behoud de aspect ratio van de afbeelding */
+    border-radius: 50%;
+}
+
+.drag-handle {
+    display: flex;
+    align-items: center; /* Dit centreert de items verticaal */
+    gap: 10px; /* Dit voegt wat ruimte toe tussen de afbeelding en de tekst */
+}
+
+

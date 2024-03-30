@@ -1,0 +1,14 @@
+﻿@page "/game/edit"
+@using DeMol.App.Services
+
+<EditForm Model="@game" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="prizeMoney">Prijzengeld:</label>
+        <InputNumber id="prizeMoney" class="form-control" @bind-Value="game.PrizeMoney" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Wijziging opslaan</button>
+</EditForm>

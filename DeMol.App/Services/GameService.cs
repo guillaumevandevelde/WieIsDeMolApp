@@ -12,6 +12,16 @@ public class GameService
     {
         _context = context;
     }
+    
+    public async Task CreateGameAsync()
+    {
+        if ( await GetGameThisYear() == null)
+        {
+            var game = new Game();
+            _context.Games.Add(game);
+            await _context.SaveChangesAsync();
+        }
+    }
 
     public async Task<List<Game>> GetAllGamesAsync()
     {
@@ -24,13 +34,13 @@ public class GameService
             .FirstOrDefaultAsync(g => g.Id == id);
     }
 
-    public async Task AddGameAsync(Game game)
+    public async Task AddGameAsync(Game? game)
     {
         _context.Games.Add(game);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateGameAsync(Game game)
+    public async Task UpdateGameAsync(Game? game)
     {
         _context.Games.Update(game);
         await _context.SaveChangesAsync();
@@ -44,5 +54,10 @@ public class GameService
             _context.Games.Remove(game);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public async Task<Game?> GetGameThisYear()
+    {
+        return _context.Games.SingleOrDefault(e => e.Year == DateTime.Now.Year);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Auth0.AspNetCore.Authentication;
+using DeMol.App.Services;
 using DeMol.Domain;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -10,13 +11,38 @@ namespace DeMol.App.Controllers
 {
     public class AccountController : Controller
     {
-        public async Task Login(string returnUrl = "/")
+        private readonly UserService _userService;
+        public AccountController(
+            
+            UserService userService)
+            
+        {
+            _userService = userService;
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> Login(string returnUrl = "/")
         {
             var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
-                .WithRedirectUri(returnUrl)
+                .WithRedirectUri(Url.Action(nameof(HandleCallback), new { returnUrl }))
                 .Build();
 
-            await HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
+            return Challenge(authenticationProperties, Auth0Constants.AuthenticationScheme);
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> HandleCallback(string returnUrl = "/")
+        {
+            var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var name = User.Identity?.Name;
+
+            await _userService.CreateUserAsync(new ApplicationUser()
+            {
+                Name = name,
+                Email = email,
+            });
+
+            return LocalRedirect(returnUrl);
         }
 
         [Authorize]
@@ -32,15 +58,6 @@ namespace DeMol.App.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
-        [Authorize]
-        public IActionResult Profile()
-        {
-            return View(new User()
-            {
-                Name = User.Identity.Name,
-                Email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value,
-            });
-        }
 
 
         /// <summary>

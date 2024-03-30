@@ -4,7 +4,18 @@
 
 }
 
+#shared1{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px; /* Deze regel zorgt voor enige ruimte tussen de items */
+}
 
+candidate-picture{
+    width: 100px; /* Stel een vaste breedte in voor afbeeldingen, pas dit aan naar jouw voorkeur */
+    height: auto; /* Behoud de aspect ratio van de afbeelding */
+    border-radius: 50%;
+}
 
 html, body {
     font-family: 'knockout', Helvetica, Arial, sans-serif;

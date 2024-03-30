@@ -1,6 +1,5 @@
 ﻿@page "/games"
 @using DeMol.App.Services
-@inject GameService GameService
 
 <h3>Beheer Games</h3>
 
@@ -12,7 +11,7 @@ foreach (var game in games)
 {
 <div>
     Jaar: @game.Year, Prijs: @game.PrizeMoney €
-    <button class="btn btn-secondary" @onclick="() => EditGame(game.Id)">Bewerken</button>
+    <button class="btn btn-secondary" @onclick="() => EditGame()">Bewerken</button>
     <button class="btn btn-danger" @onclick="() => DeleteGame(game.Id)">Verwijderen</button>
 </div>
 }

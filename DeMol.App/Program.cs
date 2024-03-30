@@ -4,6 +4,7 @@ using DeMol.App.Components;
 using DeMol.App.Data;
 using DeMol.App.Services;
 using DeMol.App.Support;
+using Plk.Blazor.DragDrop;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddAuth0WebAppAuthentication(options =>
 {
     options.Domain = builder.Configuration["Auth0:Domain"];
     options.ClientId = builder.Configuration["Auth0:ClientId"];
+    options.Scope = "openid email profile";
 });
 
 builder.Services.ConfigureSameSiteNoneCookies();
@@ -31,6 +33,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<CandidateService>();
 builder.Services.AddScoped<GameService>();
 builder.Services.AddScoped<VoteService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddBlazorDragDrop();
 
 var app = builder.Build();
 

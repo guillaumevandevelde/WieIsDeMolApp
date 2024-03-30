@@ -1,0 +1,29 @@
+﻿@using System.Diagnostics.Metrics
+@using DeMol.App.Components.Shared
+<div>
+    <h2>Kandidaten</h2>
+
+    <SortableList Id="shared1" Group="sharedLists" Handle=".drag-handle" Items="Candidates" Context="candidate" OnRemove="ListOneRemove">
+        <SortableItemTemplate>
+            <div class="cursor-grab">
+                <div class="drag-handle mr-2">
+                    <img class="candidate-picture" src="@candidate.PhotoUrl" id="@candidate.Id"/>
+                    <p>@candidate.Name</p>
+                </div>
+            </div>
+        </SortableItemTemplate>
+    </SortableList>
+    <h2>Je top 3 @title?</h2>
+
+    <SortableList Id="shared2" Group="sharedLists" OnRemove="ListTwoRemove" OnUpdate="@SortList" Items="Candidates2" Sort="true" Context="candidate">
+        <SortableItemTemplate>
+            <div class="cursor-grab">
+                <div class="drag-handle mr-2">
+                    <p>#@(Candidates2.IndexOf(candidate)+1)</p>
+                    <img class="candidate-picture" src="@candidate.PhotoUrl" id="@candidate.Id"/>
+                    <p>@candidate.Name</p>
+                </div>
+            </div>
+        </SortableItemTemplate>
+    </SortableList>
+</div>

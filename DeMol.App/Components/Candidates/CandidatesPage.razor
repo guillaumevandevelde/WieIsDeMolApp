@@ -1,4 +1,6 @@
 @page "/candidates"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
 
 <button class="btn btn-primary" type="button" @onclick="CreateCandidate">Nieuwe kandidaat aanmaken</button>
 
@@ -20,6 +22,7 @@ else
         <th>Mol?</th>
         <th>Winnaar?</th>
         <th>Actief?</th>
+        <th>Prijsgeld</th>
         <th>Acties</th>
     </tr>
     </thead>
@@ -27,11 +30,12 @@ else
     @foreach (var candidate in candidates)
     {
     <tr>
-        <td><img src="@candidate.PhotoUrl" alt="Foto van @candidate.Name" style="height: 50px; width: auto;"/></td>
+        <td><img class="candidate-picture" src="@candidate.PhotoUrl" alt="Foto van @candidate.Name" /></td>
         <td>@candidate.Name</td>
         <td>@(candidate.IsMol ? "Ja" : "Nee")</td>
         <td>@(candidate.IsWinner ? "Ja" : "Nee")</td>
         <td>@(candidate.IsActive ? "Ja" : "Nee")</td>
+        <td>@(candidate.ContributedPrizeMoney)</td>
         <td>
             <button class="btn btn-primary" @onclick="() => EditCandidate(candidate.Id)">Bewerken</button>
         </td>

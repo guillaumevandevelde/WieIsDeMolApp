@@ -1,26 +1,46 @@
 @page "/candidate/edit"
 @page "/candidate/edit/{Id:int}"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
 
 @using DeMol.App.Services
 @inject CandidateService CandidateService
 @inject NavigationManager NavigationManager
 
 
-    <EditForm Model="@_candidate" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<EditForm Model="@_candidate" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
 
-        <div class="form-group">
-            <label for="name">Naam:</label>
-            <InputText id="name" class="form-control" @bind-Value="_candidate.Name" />
-        </div>
-        <div class="form-group">
-            
-        </div>
-        <div class="form-group">
-            <label for="photoUrl">Foto URL:</label>
-            <InputText id="photoUrl" class="form-control" @bind-Value="_candidate.PhotoUrl" />
-        </div>
+    <div class="form-group">
+        <label for="name">Naam:</label>
+        <InputText id="name" class="form-control" @bind-Value="_candidate.Name"/>
+    </div>
 
-        <button type="submit" class="btn btn-primary">Opslaan</button>
-    </EditForm>
+    <div class="form-group">
+        <label for="name">Prijsgeld:</label>
+        <InputNumber id="prizeMoney" class="form-control" @bind-Value="_candidate.ContributedPrizeMoney"/>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Is Actief?:</label>
+        <InputCheckbox id="actief" class="form-check-input" @bind-Value="_candidate.IsActive"/>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Is de Mol?:</label>
+        <InputCheckbox id="mol" class="form-check-input" @bind-Value="_candidate.IsMol"/>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Is de winnaar?:</label>
+        <InputCheckbox id="winnaar" class="form-check-input" @bind-Value="_candidate.IsWinner"/>
+    </div>
+
+    <div class="form-group">
+        <label for="photoUrl">Foto URL:</label>
+        <InputText id="photoUrl" class="form-control" @bind-Value="_candidate.PhotoUrl"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Opslaan</button>
+</EditForm>

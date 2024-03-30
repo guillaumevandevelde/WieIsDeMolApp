@@ -17,6 +17,6 @@ public partial class CreateVotingRound : ComponentBase
     private async Task HandleValidSubmit()
     {
         await VoteRoundService.AddVotingRoundAsync(newVotingRound);
-        NavigationManager.NavigateTo("/votingrounds");
+        NavigationManager.NavigateTo("/");
     }
 }
