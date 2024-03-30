@@ -36,8 +36,18 @@ public partial class VotePage : ComponentBase
         _candidates = await CandidateService.GetActiveCandidatesAsync();
         _currentVotingRound = await VoteService.GetLatestVotingRoundAsync();
         await CheckUserAuthentication();
-        VotedForWinners = _currentVotingRound.Votes.FirstOrDefault(v => v.UserId == _currentUser.Id)?.WinnerVotes.Count != 0;
-        VotedForMoles = _currentVotingRound.Votes.FirstOrDefault(v => v.UserId == _currentUser.Id)?.MoleVotes.Count != 0;
+        
+        if (_currentVotingRound.Votes.Count != 0 )
+        {
+            VotedForWinners = _currentVotingRound?.Votes.Any(v => v.UserId == _currentUser.Id && v.WinnerVotes.Any()) == true;
+            VotedForMoles =  _currentVotingRound?.Votes.Any(v => v.UserId == _currentUser.Id && v.MoleVotes.Any()) == true;
+            ;
+        }else
+        {
+            VotedForWinners = false;
+            VotedForMoles = false;
+        }
+        
     }
     
     private async Task VoteWinners()
@@ -83,8 +93,7 @@ public partial class VotePage : ComponentBase
         
         _currentVotingRound?.AddVote(vote);
         await VoteService.UpdateVotingRoundAsync(_currentVotingRound);
-     
-        
+        VotedForMoles = true;
         NavigationManager.NavigateTo("/");
      
     }

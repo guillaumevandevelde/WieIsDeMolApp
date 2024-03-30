@@ -37,6 +37,10 @@ public class VoteService
     public async Task<VotingRound?> GetLatestVotingRoundAsync()
     {
         return await _context.VotingRounds
+            .Include(vr => vr.Votes)
+                .ThenInclude(v => v.MoleVotes)
+            .Include(vr => vr.Votes)
+                .ThenInclude(v => v.WinnerVotes)
             .OrderByDescending(vr => vr.Id)
             .SingleOrDefaultAsync();
     }
